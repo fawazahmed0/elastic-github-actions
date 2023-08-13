@@ -2,17 +2,6 @@
 
 set -euxo pipefail
 
-if [[ -z $STACK_VERSION ]]; then
-  echo -e "\033[31;1mERROR:\033[0m Required environment variable [STACK_VERSION] not set\033[0m"
-  exit 1
-fi
-
-MAJOR_VERSION=`echo ${STACK_VERSION} | cut -c 1`
-
-docker network create elastic
-
-mkdir -p /es/plugins/
-chown -R 1000:1000 /es/
 
 if [[ ! -z $PLUGINS ]]; then
   docker run --rm \
